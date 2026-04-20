@@ -10,11 +10,16 @@ export const styles = StyleSheet.create({
   },
   container_inline: {
     flexDirection: "row",
+    alignItems: "center",
     fontSize: 20
   },
   title: {
     fontSize: 40,
     color: colors.green[900],
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 20,
+    color: colors.gray[400],
+  },
 });

@@ -1,19 +1,16 @@
-import {Text, View, StyleSheet} from "react-native";
-import {styles} from "./styles";
+import { styles } from "@/app/index/styles";
+import { Text, View } from "react-native";
 
 export default function Index() {
-    return (
+  return (
     <View style={styles.container}>
       <View style={styles.container_inline}>
-        <Text style = {{color: "gray"}}>
-            <Text>MVConsorte: </Text>
-            <Text>Bem vindo ao seu primeiro...</Text>
+        <Text style={styles.subtitle}>
+          <Text>MVConsorte: </Text>
+          <Text>Bem vindo ao seu primeiro...</Text>
         </Text>
       </View>
       <Text style={styles.title}>Hello, World!</Text>
-      <Text>Bem vindo à primeira visualização do MVConsorte!</Text>
-      <Text>App React Native</Text>
     </View>
-    )
-};
-
+  );
+}
