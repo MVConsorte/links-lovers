@@ -24,9 +24,9 @@ Abra o terminal na pasta do seu projeto e execute os seguintes comandos em ordem
    npm install
    ```
 
-4. **Instale explicitamente o preset que está faltando (por garantia):**
+4. **Instale config do expo do babel** (ele já lida com presets):
    ```bash
-   npm install @babel/preset-env --save-dev
+   npm install babel-preset-expo --save-dev
    ```
 
 ---
