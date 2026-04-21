@@ -1,25 +1,25 @@
-import { StyleSheet } from "react-native";
-
 import { colors } from "@/styles/colors";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    paddingTop: 70,
   },
-  container_inline: {
+  header: {
+    paddingHorizontal: 24,
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    fontSize: 20
+    justifyContent: "space-between"
   },
   title: {
     fontSize: 40,
     color: colors.green[900],
     fontWeight: "bold",
   },
-  subtitle: {
-    fontSize: 20,
-    color: colors.gray[400],
+  logo: {
+    height: 32,
+    width: 38,
   },
 });
