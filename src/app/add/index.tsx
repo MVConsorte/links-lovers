@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Alert} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { colors } from "@/styles/colors";
@@ -16,7 +16,18 @@ export default function Add() {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-  function handleAdd() {}
+  function handleAdd() {
+    if(!category){
+      return Alert.alert("Categoria", "Selecione a categoria primeiro")
+    }
+    if(!name.trim()){
+      return Alert.alert("Nome", "Informe o nome")
+    }
+    if(!url.trim())
+      return Alert.alert("URL", "Informe a URL")
+
+    console.log({category, name, url})
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,7 +44,7 @@ export default function Add() {
 
       <View style={styles.form}>
         <Input placeholder="Nome" onChangeText={setName} autoCorrect={false} />
-        <Input placeholder="Url" onChangeText={setUrl} autoCorrect={false} />
+        <Input placeholder="URL" onChangeText={setUrl} autoCorrect={false} />
         <Button title="Adicionar" onPress={handleAdd} />
       </View>
     </SafeAreaView>
