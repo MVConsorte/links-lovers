@@ -4,8 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
-
-import { Category } from "@/components/category";
+import { Categories } from "@/components/categories";
 
 export default function Index() {
   return (
@@ -17,11 +16,8 @@ export default function Index() {
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
-
-      <View style={styles.categories}>
-        <Category name="projetos" icon="code" isSelected />
-        <Category name="site" icon="language" isSelected />
-        <Category name="Video" icon="movie" isSelected = {false} />
+      <View style={styles.subcontainer}>
+        <Categories />
       </View>
     </SafeAreaView>
   );
