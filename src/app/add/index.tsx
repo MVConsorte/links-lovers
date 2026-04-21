@@ -1,23 +1,22 @@
-import { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
 
+import { Button } from "@/components/button";
 import { Categories } from "@/components/categories";
 import { Input } from "@/components/input";
-import { Button } from "@/components/button";
 
 export default function Add() {
-  const [name, setName] = useState("")
-  const [url, setUrl] = useState("")
+  const [category, setCategory] = useState("");
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
 
-  function handleAdd(){
-
-  }
+  function handleAdd() {}
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,12 +29,12 @@ export default function Add() {
       </View>
 
       <Text style={styles.label}>Selecione uma categoria</Text>
-      <Categories />
+      <Categories onChange={setCategory} selected={category} />
 
       <View style={styles.form}>
-        <Input placeholder="Nome" onChangeText={setName} autoCorrect={false}/>
-        <Input placeholder="Url" onChangeText={setUrl} autoCorrect={false}/>
-        <Button title="Adicionar" onPress={handleAdd}/>
+        <Input placeholder="Nome" onChangeText={setName} autoCorrect={false} />
+        <Input placeholder="Url" onChangeText={setUrl} autoCorrect={false} />
+        <Button title="Adicionar" onPress={handleAdd} />
       </View>
     </SafeAreaView>
   );

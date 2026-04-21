@@ -12,12 +12,16 @@ import { router } from "expo-router";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
+import { categories } from "@/utils/categories";
 
 import { Link } from "@/components/link";
 import { Option } from "@/components/option";
 import { Categories } from "@/components/categories";
+import { useState } from "react";
 
 export default function Index() {
+  const [category, setCategory] = useState(categories[0].name)
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -27,7 +31,7 @@ export default function Index() {
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
-      <Categories />
+      <Categories onChange={setCategory} selected={category}/>
 
       <FlatList
         data={["1", "2", "3", "4"]}
