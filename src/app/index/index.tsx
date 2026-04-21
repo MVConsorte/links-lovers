@@ -4,6 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
+
+import { Link } from "@/components/link"
 import { Categories } from "@/components/categories";
 
 export default function Index() {
@@ -19,6 +21,8 @@ export default function Index() {
       <View style={styles.subcontainer}>
         <Categories />
       </View>
+
+      <Link name="Rocketseat" url="https://app.rocketseat.com.br/" onDetails={() => console.log("clicou!")}/>
     </SafeAreaView>
   );
 }
