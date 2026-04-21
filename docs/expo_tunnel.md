@@ -60,6 +60,14 @@ Mesmo no modo Tunnel, o Firewall do Windows pode bloquear a saída de dados do N
 ### Lentidão no Carregamento
 O carregamento inicial (JavaScript Bundle) pode ser mais lento em comparação ao modo LAN, pois os dados trafegam por servidores externos. Uma vez carregado, as atualizações rápidas (Fast Refresh) funcionam normalmente.
 
+### Erro: "failed to start tunnel" ou "failed to connect to tunnel"
+
+Nesse caso, o problema pode estar vinculado ao cache do Bundler. Para resolver, geralmente limpá-lo resolve. execute o comando abaixo para limpar o cache do Metro Bundler:
+
+```bash
+npx expo start --clear --tunnel
+```
+
 ## Emuladores em simultâneo
 
 No caso de estar utilizando emuladores, ocorre que é necessário ajustar a rede do emulador para acessar o túnel. Para isso, ajuste a configuração manualmente da rede do emulador seguindo as instruções abaixo:
