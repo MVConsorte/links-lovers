@@ -8,6 +8,7 @@ import {
   Text,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
@@ -22,7 +23,7 @@ export default function Index() {
       <View style={styles.header}>
         <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => router.navigate("/add")}>
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
@@ -43,7 +44,7 @@ export default function Index() {
         showsVerticalScrollIndicator={false}
       />
 
-      <Modal transparent visible>
+      <Modal transparent visible={false}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>

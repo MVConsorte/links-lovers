@@ -1,22 +1,26 @@
-import { View, Text, TouchableOpacity} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { styles } from "./styles";
 import { colors } from "@/styles/colors";
+import { styles } from "./styles";
 
-export default function Add(){
-    return (
-        < SafeAreaView style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity>
-                    <MaterialIcons name="arrow-back" size={32} color={colors.gray[200]} />
-                </TouchableOpacity>
+import { Categories } from "@/components/categories";
 
-                <Text style={styles.title}>Novo</Text>
-            </View>
+export default function Add() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => router.back()}>
+          <MaterialIcons name="arrow-back" size={32} color={colors.gray[200]} />
+        </TouchableOpacity>
 
-            <Text style={styles.label}>Selecione uma categoria</Text>
-        </SafeAreaView>
-    )
+        <Text style={styles.title}>Novo</Text>
+      </View>
+
+      <Text style={styles.label}>Selecione uma categoria</Text>
+      <Categories />
+    </SafeAreaView>
+  );
 }
