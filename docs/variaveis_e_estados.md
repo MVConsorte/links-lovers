@@ -133,6 +133,84 @@ O `useState` é a fonte primária desses dados. Manter os dados como "estados" e
 
 Os hooks, como o `useState`, `useEffect`, etc., podem ser vistos como uma forma de aplicar o **Padrão Decorator** ou **Strategy** de uma maneira mais funcional. Eles permitem "decorar" ou adicionar "estratégias" (comportamentos como gerenciamento de estado, efeitos colaterais, etc.) a um componente de função sem alterar sua estrutura ou hierarquia. Isso promove a reutilização de lógica e a composição de funcionalidades complexas a partir de peças menores e isoladas.
 
+## Boas Práticas na Utilização de Estados e Variáveis
+
+Para escrever um código limpo, eficiente e de fácil manutenção, é importante seguir algumas boas práticas ao lidar com estados e variáveis.
+
+### Quando Usar Variáveis
+
+1.  **Cálculos Temporários:** Use variáveis para armazenar resultados de cálculos que são necessários apenas durante uma única renderização. Se o valor pode ser derivado de `props` ou de outros estados, prefira calculá-lo diretamente na renderização em vez de criar um novo estado.
+
+    ```jsx
+    function Carrinho({ itens }) {
+      // 'subtotal', 'frete' e 'total' são variáveis, pois são recalculadas a cada renderização
+      const subtotal = itens.reduce((acc, item) => acc + item.preco, 0);
+      const frete = subtotal > 200 ? 0 : 25;
+      const total = subtotal + frete;
+
+      return <Text>Total a pagar: {total}</Text>;
+    }
+    ```
+
+2.  **Valores Constantes:** Para valores que não mudam durante o ciclo de vida do componente (como configurações, labels, etc.), declare-os como `const` fora do escopo do componente para evitar recriações desnecessárias a cada renderização.
+
+### Quando Usar Estados
+
+1.  **Padrão de Nomenclatura:** Ao usar `useState`, siga a convenção `[nomeDoEstado, setNomeDoEstado]`. Isso torna o código imediatamente legível, deixando claro qual variável detém o valor do estado e qual função é usada para atualizá-lo.
+
+    ```jsx
+    // Correto
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Incorreto (funciona, mas é confuso)
+    const [usuarioState, atualizaUsuario] = useState(null);
+    ```
+
+2.  **Dados Interativos:** Sempre que um dado for alterado por uma interação do usuário (cliques, digitação, etc.) e essa alteração precisar ser refletida na tela, use estado.
+
+3.  **Dados Assíncronos:** Para armazenar dados que chegam de uma API ou de outra fonte assíncrona. O estado é ideal para guardar o resultado, bem como para controlar o status do carregamento (`loading`) e possíveis erros.
+
+    ```jsx
+    function PerfilUsuario({ id }) {
+      const [usuario, setUsuario] = useState(null);
+      const [loading, setLoading] = useState(true);
+
+      useEffect(() => {
+        fetchUsuario(id)
+          .then((data) => setUsuario(data))
+          .finally(() => setLoading(false));
+      }, [id]);
+
+      if (loading) return <Text>Carregando...</Text>;
+      return <Text>Nome: {usuario.nome}</Text>;
+    }
+    ```
+
+4.  **Manter a Simplicidade:** Evite criar estados desnecessários. Se um valor pode ser calculado a partir de `props` ou de outros estados, ele não precisa ser um estado próprio. Isso é conhecido como "derivação de estado".
+
+    ```jsx
+    // Bom exemplo (estado derivado)
+    function NomeCompleto({ nome, sobrenome }) {
+      const nomeCompleto = `${nome} ${sobrenome}`; // Variável, não estado
+      return <Text>{nomeCompleto}</Text>;
+    }
+
+    // Mau exemplo (estado redundante)
+    function NomeCompletoIncorreto({ nome, sobrenome }) {
+      const [nomeCompleto, setNomeCompleto] = useState("");
+
+      // Sincronização manual e complexa, propensa a erros
+      useEffect(() => {
+        setNomeCompleto(`${nome} ${sobrenome}`);
+      }, [nome, sobrenome]);
+
+      return <Text>{nomeCompleto}</Text>;
+    }
+    ```
+
+5.  **Agrupar Estados Relacionados:** Se você tem múltiplos estados que sempre mudam juntos, considere agrupá-los em um único objeto ou usar o hook `useReducer` para simplificar a lógica de atualização.
+
 ## Conclusão
 
 Usar **variáveis** é apropriado para cálculos temporários e dados que não precisam ser lembrados entre renderizações e não afetam a aparência da UI. Para qualquer dado que, ao ser alterado, deva atualizar o que o usuário vê na tela, o **estado (`useState`)** é a ferramenta correta e fundamental, pois ele se integra ao ciclo de vida e ao motor de renderização do React, permitindo a construção de interfaces reativas e declarativas.
