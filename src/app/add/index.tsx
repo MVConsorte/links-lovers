@@ -25,8 +25,8 @@ export default function Add() {
       <Categories />
 
       <View style={styles.form}>
-        <Input placeholder="Nome"/>
-        <Input placeholder="Url"/>
+        <Input placeholder="Nome" onChangeText={console.log}/>
+        <Input placeholder="Url" onChangeText={(value) => console.log(value)}/>
         <Button title="Adicionar" />
       </View>
     </SafeAreaView>
