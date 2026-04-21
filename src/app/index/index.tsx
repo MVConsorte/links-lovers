@@ -18,9 +18,11 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      <Category name="projetos" icon="code" />
-      <Category name="site" icon="language" />
-      <Category name="Video" icon="movie" />
+      <View style={styles.categories}>
+        <Category name="projetos" icon="code" isSelected />
+        <Category name="site" icon="language" isSelected />
+        <Category name="Video" icon="movie" isSelected = {false} />
+      </View>
     </SafeAreaView>
   );
 }
