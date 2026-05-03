@@ -8,9 +8,9 @@ import {
   Text,
   Alert
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
@@ -34,9 +34,11 @@ export default function Index() {
     }
   }
 
-  useEffect(() => {
-    getLinks()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      getLinks()
+    }, [])
+  )
 
   return (
     <SafeAreaView style={styles.container}>
