@@ -9,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Linking
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -60,6 +61,17 @@ export default function Index() {
       {style: "cancel", text: "Não"},
       {text: "Sim", onPress: linkRemove}
     ])
+  }
+
+  
+  async function handleOpen(){
+    try{
+      await Linking.openURL(link.url)
+      setShowModal(false)
+    } catch(error){
+      Alert.alert("Link", "Não foi possível abrir o link")
+      console.log(error)
+    }
   }
 
   useFocusEffect(
@@ -116,7 +128,7 @@ export default function Index() {
 
             <View style={styles.modalFooter}>
               <Option name="excluir" icon="delete" variant="secondary" onPress={handleRemove}/>
-              <Option name="abrir" icon="language" variant="secondary" />
+              <Option name="abrir" icon="language" variant="secondary" onPress={handleOpen}/>
             </View>
           </View>
         </View>
