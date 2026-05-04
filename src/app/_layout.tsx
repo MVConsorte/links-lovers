@@ -6,6 +6,7 @@ export default function Layout() {
 
   return (
     <Stack
+      initialRouteName="index/index"
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor },

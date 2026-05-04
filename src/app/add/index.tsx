@@ -49,7 +49,7 @@ export default function Add() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => router.back()} activeOpacity={0.5}>
           <MaterialIcons name="arrow-back" size={32} color={colors.gray[200]} />
         </TouchableOpacity>
 
